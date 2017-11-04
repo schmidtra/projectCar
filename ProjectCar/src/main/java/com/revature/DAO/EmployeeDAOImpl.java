@@ -13,7 +13,6 @@ public class EmployeeDAOImpl implements EmployeeDAO
 {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
-	// TODO write to linking tables???
 	public void createEmployee(Employee e) 
 	{
 		String[] primaryKeys = new String[1];
@@ -120,6 +119,41 @@ public class EmployeeDAOImpl implements EmployeeDAO
 		conn.close();
 		return e;
 	}
+	
+	public Employee getEmployeeByLogin(String user, String pass) throws SQLException
+	{
+		Connection conn = cf.getConnection();
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM EMPLOYEE WHERE EMP_USERNAME = "
+				+ user + "AND EMP_PASSWORD = " + pass);
+		Employee e = null;
+		
+		while(rs.next())
+		{
+			int newId = rs.getInt(1);
+			String username = rs.getString(2);
+			String password = rs.getString(3);
+			String firstName = rs.getString(4);
+			String lastName = rs.getString(5);
+			String midInitial = rs.getString(6);
+			String position = rs.getString(7);
+			int department = rs.getInt(8);
+			int reportsTo = rs.getInt(9);
+			String street = rs.getString(10);
+			String city = rs.getString(11);
+			String state = rs.getString(12);
+			int zip = rs.getInt(13);
+			String country = rs.getString(14);
+			
+			e = new Employee(newId, username, password, firstName,
+					lastName, midInitial, position, department, reportsTo, 
+					street, city, state, zip, country);
+		}
+		
+		conn.close();
+		return e;
+	}
 
 	public void deleteEmployee(Employee e)
 	{
@@ -141,5 +175,4 @@ public class EmployeeDAOImpl implements EmployeeDAO
 			ex.printStackTrace();
 		}
 	}
-	
 }

@@ -107,11 +107,13 @@ public class Employee
 		this.department = department;
 	}
 		
-	public String getPosition() {
+	public String getPosition() 
+	{
 		return position;
 	}
 
-	public void setPosition(String position) {
+	public void setPosition(String position) 
+	{
 		this.position = position;
 	}
 
@@ -173,10 +175,5 @@ public class Employee
 	public void setCountry(String country) 
 	{
 		this.country = country;
-	}
-
-	void requestReimbursement()
-	{
-		
 	}
 }

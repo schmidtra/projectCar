@@ -15,7 +15,7 @@ public class RequestDAOImpl implements RequestDAO
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	@Override
-	public void createRequest(Request r) 
+	public void createRequest(Request r) throws SQLException
 	{
 		String[] primaryKeys = new String[1];
 		primaryKeys[0] = "REQ_ID";
@@ -51,7 +51,7 @@ public class RequestDAOImpl implements RequestDAO
 	}
 
 	@Override
-	public void updateRequest(Request r) 
+	public void updateRequest(Request r) throws SQLException
 	{	
 		String[] primaryKeys = new String[1];
 		primaryKeys[0] = "REQ_ID";
@@ -87,13 +87,29 @@ public class RequestDAOImpl implements RequestDAO
 	}
 
 	@Override
-	public void deleteRequest(Request r) 
+	public void deleteRequest(Request r) throws SQLException
 	{
-		
+		String[] primaryKeys = new String[1];
+		primaryKeys[0] = "REQ_ID";
+
+		String sql = "DELETE FROM REQUEST WHERE REQ_ID = ?";
+
+		try(Connection conn = cf.getConnection();)
+		{
+			PreparedStatement  prepstmt = conn.prepareStatement(sql);
+			
+			prepstmt.setInt(1, r.getId());
+			
+			prepstmt.executeUpdate();
+		}
+		catch (SQLException ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
-	public Request getRequestById(int id) 
+	public Request getRequestById(int id) throws SQLException
 	{
 		Connection conn = cf.getConnection();
 		
