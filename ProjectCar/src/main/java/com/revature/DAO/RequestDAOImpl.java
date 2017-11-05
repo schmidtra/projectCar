@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.revature.beans.Employee;
 import com.revature.beans.Request;
@@ -38,7 +39,7 @@ public class RequestDAOImpl implements RequestDAO
 			stmt.setString(7, r.getReason());
 			stmt.setString(8, r.getDuration());
 			stmt.setString(9, r.getGrade());
-			stmt.setString(10, r.getStatus());
+			stmt.setInt(10, r.getStatus());
 			stmt.setString(11, r.getEventEnd());
 			stmt.setInt(12, r.getSigner());
 			
@@ -47,6 +48,27 @@ public class RequestDAOImpl implements RequestDAO
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void changeStatus(Request r) throws SQLException
+	{
+		String[] primaryKeys = new String[1];
+		primaryKeys[0] = "REQ_ID";
+		
+		String sql = "UPDATE REQUEST SET REQ_STATUS = ?";
+		
+		try(Connection conn = cf.getConnection())
+		{
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, r.getStatus());
+			
+			stmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -74,7 +96,7 @@ public class RequestDAOImpl implements RequestDAO
 			stmt.setString(7, r.getReason());
 			stmt.setString(8, r.getDuration());
 			stmt.setString(9, r.getGrade());
-			stmt.setString(10, r.getStatus());
+			stmt.setInt(10, r.getStatus());
 			stmt.setString(11, r.getEventEnd());
 			stmt.setInt(12, r.getSigner());
 			
@@ -128,7 +150,7 @@ public class RequestDAOImpl implements RequestDAO
 			String reason = rs.getString(7);
 			String duration = rs.getString(8);
 			String grade = rs.getString(9);
-			String status = rs.getString(10);
+			int status = rs.getInt(10);
 			String eventEnd = rs.getString(11);
 			int signer = rs.getInt(12);
 			
@@ -138,5 +160,40 @@ public class RequestDAOImpl implements RequestDAO
 		
 		conn.close();
 		return r;
+	}
+	
+	@Override
+	public ArrayList<Request> getRequestsForEmployee(Employee e) throws SQLException
+	{
+		Connection conn = cf.getConnection();
+		ArrayList<Request> requests = new ArrayList<Request>();
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUEST WHERE EMP_ID = " + e.getId());
+		Request r = null;
+		
+		while(rs.next())
+		{
+			int empid = rs.getInt(1);
+			String type = rs.getString(2);
+			double cost = rs.getDouble(3);
+			String eventStart = rs.getString(4);
+			String appDate = rs.getString(5);
+			double amt = rs.getDouble(6);
+			String reason = rs.getString(7);
+			String duration = rs.getString(8);
+			String grade = rs.getString(9);
+			int status = rs.getInt(10);
+			String eventEnd = rs.getString(11);
+			int signer = rs.getInt(12);
+			
+			r = new Request(empid, type, cost, eventStart, appDate, amt, reason,
+					duration, grade, status, eventEnd, signer);
+			
+			requests.add(r);
+		}
+		
+		conn.close();
+		return requests;
 	}
 }

@@ -28,31 +28,30 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{	
 		EmployeeDAOImpl eDAO = new EmployeeDAOImpl();
 		ObjectMapper mapper = new ObjectMapper();
 		
 		Employee e = mapper.readValue(request.getParameter("employee", Employee.class));
-		
 		e = eDAO.getEmployee(e.getId());
 		
+		String employee = mapper.writeValueAsString(e);
+		response.setContentType("application/json");
+		
 		PrintWriter pw = request.getWriter();
-
-		pw.write("{ id: " + e.getId() + " username: " + e.getUsername() + 
-				", firstName: " + e.getFirstName() + ", lastName: " +
-				e.getLastName() + ", midInitial: " + e.getMidInitial() + 
-				", position: " + e.getPosition() + ", department: " + e.getDepartment() + 
-				", reportsTo: " + e.getReportsTo() + ", street: " + e.getStreet() +
-				", city: " + e.getCity() + ", state: " + e.getState() + ", zip: " +
-				e.getZip() + ", country: " + e.getCountry());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+ 
+		if(e == null)
+		{
+			pw.write("");
+		}
+		else
+		{
+			pw.write(employee);
+		}
 	}
 
 }

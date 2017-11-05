@@ -12,13 +12,13 @@ public class Request
 	private String reason;
 	private String duration;
 	private String grade;
-	private String status;
+	private int status;
 	private String eventEnd;
 	private int signer;
 	
 	public Request(int empId, String type, double cost, String eventStart,
 			String appDate, double amount, String reason, String duration, 
-			String grade, String status, String eventEnd, int signer)
+			String grade, int status, String eventEnd, int signer)
 	{
 		this.type = type;
 		this.cost = cost;
@@ -153,12 +153,12 @@ public class Request
 		this.grade = grade;
 	}
 
-	public String getStatus() 
+	public int getStatus() 
 	{
 		return status;
 	}
 
-	public void setStatus(String status) 
+	public void setStatus(int status) 
 	{
 		this.status = status;
 	}

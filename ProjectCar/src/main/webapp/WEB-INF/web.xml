@@ -79,4 +79,14 @@
     <servlet-name>UploadFileServlet</servlet-name>
     <url-pattern>/UploadFileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RequestInfoServlet</display-name>
+    <servlet-name>RequestInfoServlet</servlet-name>
+    <servlet-class>com.revature.servlets.RequestInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestInfoServlet</servlet-name>
+    <url-pattern>/RequestInfoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
