@@ -13,5 +13,6 @@ public interface RequestDAO
 	public void deleteRequest(Request r) throws SQLException;
 	public Request getRequestById(int id) throws SQLException;
 	public ArrayList<Request> getRequestsForEmployee(Employee e) throws SQLException;
+	public ArrayList<Request> getApprovalsForEmployee(Employee e) throws SQLException;
 	public void changeStatus(Request r) throws SQLException;
 }

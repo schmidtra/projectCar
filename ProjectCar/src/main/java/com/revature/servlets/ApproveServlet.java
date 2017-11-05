@@ -3,9 +3,6 @@ package com.revature.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Servlet implementation class ApproveServlet
- */
 public class ApproveServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;

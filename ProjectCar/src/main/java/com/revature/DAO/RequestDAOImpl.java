@@ -21,10 +21,12 @@ public class RequestDAOImpl implements RequestDAO
 		String[] primaryKeys = new String[1];
 		primaryKeys[0] = "REQ_ID";
 		
-		String sql = "INSERT INTO REQUEST(REQ_EMP_ID, REQ_TYPE, REQ_COST, "
-				+ "REQ_EVENT_START, REQ_APP_DATE, REQ_AMOUNT, REQ_REASON, "
-				+ "REQ_DURATION, REQ_GRADE, REQ_STATUS, REQ_EVENT_END, REQ_SIGNER "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO REQUEST(REQ_EMP_ID, REQ_TYPE, REQ_DESCRIPTION, "
+				+ "REQ_JUSTIFICATION, REQ_LOC_NAME, REQ_LOC_STREET, REQ_LOC_CITY, "
+				+ "REQ_LOC_STATE, REQ_LOC_ZIP, REQ_COST, REQ_REIMB_AMT, REQ_REIMB_REASON "
+				+ "REQ_APP_DATE, REQ_EVENT_START, REQ_EVENT_END, REQ_HOURS_MISSED "
+				+ "REQ_STATUS, REQ_BENCO "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try(Connection conn = cf.getConnection();)
 		{
@@ -163,13 +165,23 @@ public class RequestDAOImpl implements RequestDAO
 	}
 	
 	@Override
+	public ArrayList<Request> getApprovalsForEmployee(Employee e) throws SQLException
+	{
+		Connection conn = cf.getConnection();
+		ArrayList<Request> approvals = new ArrayList<Request>();
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUEST WHERE )
+	}
+	
+	@Override
 	public ArrayList<Request> getRequestsForEmployee(Employee e) throws SQLException
 	{
 		Connection conn = cf.getConnection();
 		ArrayList<Request> requests = new ArrayList<Request>();
 		
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUEST WHERE EMP_ID = " + e.getId());
+		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUEST WHERE REQ_EMP_ID = " + e.getId());
 		Request r = null;
 		
 		while(rs.next())

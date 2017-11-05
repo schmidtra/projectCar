@@ -24,10 +24,11 @@ public class RequestInfoServlet extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDAOImplArrayList<E>ew RequestDAOImpl();
+		RequestDAOImpl rDAO = new RequestDAOImpl();
 		ArrayList<Request> requests = new ArrayList<Request>();
 		String s = "";
 		requests = rDAO.getRequestsForEmployee(e);
+		ObjectMapper mapper = new ObjectMapper();
 		
 		String requestsJSON = mapper.writeValueAsString(requests);
 		response.setContentType("application/json");

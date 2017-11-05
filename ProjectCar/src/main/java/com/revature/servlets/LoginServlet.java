@@ -11,21 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.DAO.EmployeeDAOImpl;
 import com.revature.beans.Employee;
 
-/**
- * Servlet implementation class LoginServlet
- */
-public class LoginServlet extends HttpServlet {
-    /**
-     * Default constructor. 
-     */
+public class LoginServlet extends HttpServlet 
+{
     public LoginServlet() 
     {
     	
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
@@ -53,5 +45,4 @@ public class LoginServlet extends HttpServlet {
 			pw.write(employee);
 		}
 	}
-
 }

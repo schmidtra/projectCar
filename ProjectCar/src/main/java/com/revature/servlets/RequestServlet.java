@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet implementation class ApproveServlet
+ * Servlet implementation class RequestServlet
  */
-public class ApproveServlet extends HttpServlet 
+public class RequestServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 
-    public ApproveServlet() 
+    public RequestServlet() 
     {
     	
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
 	}
@@ -26,7 +26,6 @@ public class ApproveServlet extends HttpServlet
 		ObjectMapper mapper = new ObjectMapper();
 		
 		Request r = mapper.readValue(request.getParameter("request", Request.class));
-		
-		rDAO.changeStatus(r);
+		rDAO.createRequest(r);
 	}
 }
