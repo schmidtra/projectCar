@@ -4,12 +4,26 @@ html{
 }
 body{
 	height: 100%;
+	background-image: url("trmswatermark.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+#approvals{
+	
+}
+
+#requests{
+
+}
 .panel{
-	height:97%;
+	background-color: rgba(0,0,0,0);
+	height:95%;
 }
 
+.panel-body{
+	background-color: rgba(0,0,0,0);
+}
 #loginBtn{
 	background-color: #aaefef;
 }
