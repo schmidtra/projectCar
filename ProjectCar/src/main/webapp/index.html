@@ -40,18 +40,18 @@
 		<div class="panel-body">
 		
 			<div class="row">
- 		 		<div class="col-sm-10" id="approvals">
+ 		 		<div class="col-sm-10">
   				
   				</div>
-  				<div class="col-sm-2" id="requests">
+  				<div class="col-sm-2">
   				<button type="button" class="btn btn-success btn-lg" id="nrequest" data-toggle="modal" data-target="#reqModal">+ New Request</button>
   				</div>
 		</div> 
 			<div class="row">
- 		 		<div class="col-sm-6" id="approvals">
+ 		 		<div class="col-sm-9" id="approvals">
   				
   				</div>
-  				<div class="col-sm-6" id="requests">
+  				<div class="col-sm-3" id="requests">
   				</div>
 		</div> 
 		</div>
@@ -102,16 +102,16 @@
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
-   <div class="col-sm-12">
+   <div class="col-md-6 col-sm-6 col-xs-12">
     <form method="post">
      <div class="form-group ">
-      <label class="control-label requiredField" for="select">
+      <label class="control-label requiredField" for="reqType">
        Event Type
        <span class="asteriskField">
         *
        </span>
       </label>
-      <select class="select form-control" id="select" name="select">
+      <select class="select form-control" id="reqType" name="reqType">
        <option value="University Courses (80%)">
         University Courses (80%)
        </option>
@@ -127,14 +127,11 @@
        <option value="Technical Training (90%)">
         Technical Training (90%)
        </option>
-       <option value="Other (30%)">
-        Other (30%)
-       </option>
       </select>
      </div>
      <div class="form-group ">
-      <label class="control-label requiredField" for="text">
-       Location
+      <label class="control-label requiredField" for="reqStreetN">
+       Street Number
        <span class="asteriskField">
         *
        </span>
@@ -144,86 +141,118 @@
         <i class="fa fa-globe">
         </i>
        </div>
-       <input class="form-control" id="text" name="text" placeholder="Street # Street, City, State, Postal Code, Country" type="text"/>
+       <input class="form-control" id="reqStreetN" name="reqStreetN" placeholder="123" type="text"/>
       </div>
      </div>
      <div class="form-group ">
-      <label class="control-label requiredField" for="eventDuration">
-       Duration (Hours)
+      <label class="control-label " for="reqStreet">
+       Street Name
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-globe">
+        </i>
+       </div>
+       <input class="form-control" id="reqStreet" name="reqStreet" placeholder="Wilson Way" type="text"/>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="reqCity">
+       City
        <span class="asteriskField">
         *
        </span>
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-globe">
+        </i>
+       </div>
+       <input class="form-control" id="reqCity" name="reqCity" placeholder="Reston" type="text"/>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="reqState">
+       State
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-globe">
+        </i>
+       </div>
+       <input class="form-control" id="reqState" name="reqState" placeholder="Virginia" type="text"/>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="reqZip">
+       Postal Code
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="reqZip" name="reqZip" placeholder="20190" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="reqCountry">
+       Country
+      </label>
+      <input class="form-control" id="reqCountry" name="reqCountry" placeholder="United States" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="date">
+       Start Date
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-calendar">
+        </i>
+       </div>
+       <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="date1">
+       End Date
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-calendar">
+        </i>
+       </div>
+       <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text"/>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="reqHours">
+       Hours
       </label>
       <div class="input-group">
        <div class="input-group-addon">
         <i class="fa fa-clock-o">
         </i>
        </div>
-       <input class="form-control" id="eventDuration" name="eventDuration" type="text"/>
+       <input class="form-control" id="reqHours" name="reqHours" placeholder="12" type="text"/>
       </div>
      </div>
      <div class="form-group ">
-      <label class="control-label requiredField" for="eventStartDate">
-       Start Date
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-calendar">
-        </i>
-       </div>
-       <input class="form-control" id="eventStartDate" name="eventStartDate" placeholder="MM/DD/YYYY" type="text"/>
-      </div>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="eventEndDate">
-       End Date
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-calendar">
-        </i>
-       </div>
-       <input class="form-control" id="eventEndDate" name="eventEndDate" placeholder="MM/DD/YYYY" type="text"/>
-      </div>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="eventCost">
+      <label class="control-label " for="reqCost">
        Cost
-       <span class="asteriskField">
-        *
-       </span>
       </label>
       <div class="input-group">
        <div class="input-group-addon">
         <i class="fa fa-usd">
         </i>
        </div>
-       <input class="form-control" id="eventCost" name="eventCost" placeholder="0.00" type="text"/>
+       <input class="form-control" id="reqCost" name="reqCost" placeholder="0.00" type="text"/>
       </div>
      </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="eventDescript">
-       Description
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <textarea class="form-control" cols="40" id="eventDescript" name="eventDescript" placeholder="Enter text" rows="10"></textarea>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="eventJustify">
-       Reason
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <textarea class="form-control" cols="40" id="eventJustify" name="eventJustify" placeholder="Enter text" rows="10"></textarea>
+     <div class="form-group">
+      <div>
+       
+      </div>
      </div>
     </form>
    </div>
